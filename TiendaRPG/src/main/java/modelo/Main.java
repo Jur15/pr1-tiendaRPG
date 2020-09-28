@@ -5,6 +5,9 @@
  */
 package modelo;
 
+import control.TiendaContralador;
+import interfaz.TiendaVentana;
+
 /**
  *
  * @author andre
@@ -12,7 +15,9 @@ package modelo;
 public class Main {
     
     public static void main(String[] args) {
-        System.out.println("Hola mundo");
+        Jugador j = new Jugador();
+        TiendaVentana v = new TiendaVentana();
+        TiendaContralador control = new TiendaContralador(v, j);
         
     }
     
