@@ -13,12 +13,18 @@ import interfaz.TiendaVentana;
  * @author andre
  */
 public class Main {
-    
+
     public static void main(String[] args) {
         Jugador j = new Jugador();
         TiendaVentana v = new TiendaVentana();
         TiendaContralador control = new TiendaContralador(v, j);
-        
+
+        /* 
+        //Obtiene los productos con el API y los guarda en un archivo JSON.
+        //No usar, solo quedan 23 usos del API. Por ahora usemos el archivo JSON.
+        Fabrica fabrica = new Fabrica();
+        fabrica.obtenerArt("iphone");
+         */
     }
-    
+
 }
