@@ -11,15 +11,20 @@ package modelo;
  */
 public class Articulo {
 
-    private int precio;
     private String nombre;
     private String descripcion;
-    //Falta agregar los stats
+    private int precio;
+    //Stats
+    private int ataque;
+    private int defensa;
+    private int velocidad;
+    private int ataqueMagico;
+    private int defensaMagica;
 
-    public Articulo(int precio, String nombre, String descripcion) {
-        this.precio = precio;
+    public Articulo(String nombre, String descripcion, int precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.precio = precio;
     }
 
     public int getPrecio() {
@@ -32,6 +37,46 @@ public class Articulo {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public int getAtaqueMagico() {
+        return ataqueMagico;
+    }
+
+    public void setAtaqueMagico(int ataqueMagico) {
+        this.ataqueMagico = ataqueMagico;
+    }
+
+    public int getDefensaMagica() {
+        return defensaMagica;
+    }
+
+    public void setDefensaMagica(int defensaMagica) {
+        this.defensaMagica = defensaMagica;
     }
 
 }
