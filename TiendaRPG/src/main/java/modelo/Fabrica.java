@@ -6,11 +6,12 @@
 package modelo;
 
 import com.google.gson.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -95,15 +96,39 @@ public class Fabrica {
             //Katanas
             1, 2, 4, 5, 5, 7,
             //Estrellas
-            0, 2, 3, 5, 7, 9,
+            0, 1, 3, 4, 5, 7,
+            //Consumibles (no suben stats)
+            0, 0, 0, 0, 0, 0
+        };
+        this.bonusAtaqueMag = new int[]{
+            //Katanas
+            0, 0, 0, 1, 3, 4,
+            //Estrellas
+            1, 1, 2, 3, 4, 5,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
         this.bonusDefensa = new int[]{
             //Katanas
-            0, 1, 2, 3, 2, 5,
+            0, 1, 2, 3, 4, 5,
             //Estrellas
-            0, 0, 0, 0, 0, 0,
+            0, 1, 1, 2, 3, 3,
+            //Consumibles (no suben stats)
+            0, 0, 0, 0, 0, 0
+        };
+        this.bonusDefensaMag = new int[]{
+            //Katanas
+            0, 0, 0, 2, 3, 5,
+            //Estrellas
+            0, 1, 2, 4, 5, 6,
+            //Consumibles (no suben stats)
+            0, 0, 0, 0, 0, 0
+        };
+        this.bonusVelocidad = new int[]{
+            //Katanas
+            0, 1, 2, 4, 4, 6,
+            //Estrellas
+            1, 1, 2, 5, 5, 7,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
@@ -131,7 +156,9 @@ public class Fabrica {
     private void guardarJson(String contenido) throws IOException {
         JsonObject jObject = JsonParser.parseString(contenido).getAsJsonObject();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        gson.toJson(jObject, new FileWriter(this.nombreArchivo));
+        FileWriter escritorArchivo = new FileWriter(this.nombreArchivo);
+        gson.toJson(jObject, escritorArchivo);
+        escritorArchivo.close();
         System.out.println("Resultados guardados como " + this.nombreArchivo);
     }
 
@@ -139,7 +166,7 @@ public class Fabrica {
     public ArrayList<Articulo> construirArticulos() throws IOException {
         ArrayList<Articulo> articulos = new ArrayList<>();
         //Convierte el JSON en un objeto
-        Reader lectorArchivo = Files.newBufferedReader(Paths.get(this.nombreArchivo + ".json"));
+        Reader lectorArchivo = new BufferedReader(new InputStreamReader(new FileInputStream(this.nombreArchivo),"utf-8"));
         JsonObject busqueda = (JsonObject) JsonParser.parseReader(lectorArchivo);
         lectorArchivo.close();
         //Obtiene la propiedad llamada "products" como un array
