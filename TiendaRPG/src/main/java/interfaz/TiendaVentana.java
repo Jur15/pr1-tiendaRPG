@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaz;
 
-import javax.swing.JToggleButton;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -18,7 +14,7 @@ public class TiendaVentana extends javax.swing.JFrame {
      */
     public TiendaVentana() {
         initComponents();
-        this.setVisible(true);
+        this.setTitle("Tienda RPG");
     }
 
     /**
@@ -29,40 +25,115 @@ public class TiendaVentana extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        botonMover = new javax.swing.JToggleButton();
+        panelPestanasArt = new javax.swing.JTabbedPane();
+        panelScrollComprar = new javax.swing.JScrollPane();
+        listaComprar = new javax.swing.JList();
+        panelScrollVender = new javax.swing.JScrollPane();
+        listaVender = new javax.swing.JList();
+        panelJugador = new javax.swing.JPanel();
+        panelArt = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tienda RPG");
+        setFocusable(false);
+        setMaximumSize(new java.awt.Dimension(600, 600));
+        setMinimumSize(new java.awt.Dimension(50, 50));
+        setPreferredSize(new java.awt.Dimension(600, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(600, 600));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        botonMover.setText("Mover jugador");
+        panelPestanasArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelPestanasArt.setPreferredSize(new java.awt.Dimension(300, 475));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(botonMover)
-                .addContainerGap(165, Short.MAX_VALUE))
+        panelScrollComprar.setBorder(null);
+
+        listaComprar.setBackground(new java.awt.Color(153, 153, 153));
+        listaComprar.setModel(new DefaultListModel());
+        listaComprar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaComprar.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        listaComprar.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        panelScrollComprar.setViewportView(listaComprar);
+
+        panelPestanasArt.addTab("Comprar", panelScrollComprar);
+
+        panelScrollVender.setBorder(null);
+
+        listaVender.setBackground(new java.awt.Color(153, 153, 153));
+        listaVender.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        panelScrollVender.setViewportView(listaVender);
+
+        panelPestanasArt.addTab("Vender", panelScrollVender);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.ipady = 408;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(panelPestanasArt, gridBagConstraints);
+
+        panelJugador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelJugador.setMinimumSize(new java.awt.Dimension(300, 475));
+        panelJugador.setPreferredSize(new java.awt.Dimension(300, 475));
+
+        javax.swing.GroupLayout panelJugadorLayout = new javax.swing.GroupLayout(panelJugador);
+        panelJugador.setLayout(panelJugadorLayout);
+        panelJugadorLayout.setHorizontalGroup(
+            panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(botonMover)
-                .addContainerGap(189, Short.MAX_VALUE))
+        panelJugadorLayout.setVerticalGroup(
+            panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 473, Short.MAX_VALUE)
         );
+
+        getContentPane().add(panelJugador, new java.awt.GridBagConstraints());
+
+        panelArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelArt.setPreferredSize(new java.awt.Dimension(600, 125));
+
+        javax.swing.GroupLayout panelArtLayout = new javax.swing.GroupLayout(panelArt);
+        panelArt.setLayout(panelArtLayout);
+        panelArtLayout.setHorizontalGroup(
+            panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+        panelArtLayout.setVerticalGroup(
+            panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 123, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 605;
+        gridBagConstraints.ipady = 125;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 0, 0);
+        getContentPane().add(panelArt, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botonMover;
+    private javax.swing.JList listaComprar;
+    private javax.swing.JList listaVender;
+    private javax.swing.JPanel panelArt;
+    private javax.swing.JPanel panelJugador;
+    private javax.swing.JTabbedPane panelPestanasArt;
+    private javax.swing.JScrollPane panelScrollComprar;
+    private javax.swing.JScrollPane panelScrollVender;
     // End of variables declaration//GEN-END:variables
 
-    public JToggleButton getBotonMover() {
-        return botonMover;
+    public JList getListaComprar() {
+        return listaComprar;
     }
 
-    
+    public JList getListaVender() {
+        return listaVender;
+    }
 }

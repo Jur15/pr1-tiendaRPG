@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import com.google.gson.*;
@@ -24,7 +19,7 @@ import okhttp3.Response;
 public class Fabrica {
 
     private String nombreArchivo;
-    private String[] nombreArticulos, descArticulos;
+    private String[] nombreArticulos, descArticulos, tipoArticulos;
     private int[] preciobaseArticulos, bonusAtaque, bonusDefensa, bonusVelocidad, bonusAtaqueMag, bonusDefensaMag;
 
     public Fabrica() {
@@ -83,6 +78,14 @@ public class Fabrica {
             "Un gran frasco de esencia magica que restaura 150 MP.",
             "Una pocion que aumenta la velocidad temporalmente.",
             "Una pocion que aumenta la defensa temporalmente."
+        };
+        this.tipoArticulos = new String[]{
+            //Katanas
+            "Arma", "Arma", "Arma", "Arma", "Arma", "Arma",
+            //Estrellas
+            "Armadura", "Armadura", "Armadura", "Armadura", "Armadura", "Armadura",
+            //Consumibles
+            "Consumible", "Consumible", "Consumible", "Consumible", "Consumible", "Consumible"
         };
         this.preciobaseArticulos = new int[]{
             //Katanas
@@ -166,7 +169,7 @@ public class Fabrica {
     public ArrayList<Articulo> construirArticulos() throws IOException {
         ArrayList<Articulo> articulos = new ArrayList<>();
         //Convierte el JSON en un objeto
-        Reader lectorArchivo = new BufferedReader(new InputStreamReader(new FileInputStream(this.nombreArchivo),"utf-8"));
+        Reader lectorArchivo = new BufferedReader(new InputStreamReader(new FileInputStream(this.nombreArchivo), "utf-8"));
         JsonObject busqueda = (JsonObject) JsonParser.parseReader(lectorArchivo);
         lectorArchivo.close();
         //Obtiene la propiedad llamada "products" como un array
@@ -182,7 +185,7 @@ public class Fabrica {
             int descuento = (int) (5 - puntuacionAmazon) * 10;
             int precioTransformado = preciobaseArticulos[i] - preciobaseArticulos[i] * descuento / 100;
             //Crea el articulo
-            Articulo nuevo = new Articulo(nombreArticulos[i], descArticulos[i], precioTransformado);
+            Articulo nuevo = new Articulo(nombreArticulos[i], descArticulos[i], precioTransformado, tipoArticulos[i]);
             nuevo.setAtaque(bonusAtaque[i]);
             nuevo.setDefensa(bonusDefensa[i]);
             nuevo.setAtaqueMagico(bonusAtaqueMag[i]);

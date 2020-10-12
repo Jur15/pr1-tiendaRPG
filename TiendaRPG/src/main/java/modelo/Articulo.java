@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 /**
@@ -14,6 +9,7 @@ public class Articulo {
     private String nombre;
     private String descripcion;
     private int precio;
+    private String tipo;
     //Stats
     private int ataque;
     private int defensa;
@@ -21,16 +17,14 @@ public class Articulo {
     private int ataqueMagico;
     private int defensaMagica;
 
-    public Articulo(String nombre, String descripcion, int precio) {
+    public Articulo(String nombre, String descripcion, int precio, String tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.tipo = tipo;
     }
 
-    public int getPrecio() {
-        return precio;
-    }
-
+    //Datos
     public String getNombre() {
         return nombre;
     }
@@ -39,6 +33,15 @@ public class Articulo {
         return descripcion;
     }
 
+    public int getPrecio() {
+        return precio;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    //Stats
     public int getAtaque() {
         return ataque;
     }
