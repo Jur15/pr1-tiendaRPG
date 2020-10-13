@@ -1,7 +1,10 @@
 package interfaz;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -9,6 +12,8 @@ import javax.swing.JList;
  */
 public class TiendaVentana extends javax.swing.JFrame {
 
+    private boolean modoComprar = true;
+    
     /**
      * Creates new form TiendaVentana
      */
@@ -25,7 +30,6 @@ public class TiendaVentana extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         panelPestanasArt = new javax.swing.JTabbedPane();
         panelScrollComprar = new javax.swing.JScrollPane();
@@ -34,24 +38,28 @@ public class TiendaVentana extends javax.swing.JFrame {
         listaVender = new javax.swing.JList();
         panelJugador = new javax.swing.JPanel();
         panelArt = new javax.swing.JPanel();
+        labelNombreArt = new javax.swing.JLabel();
+        panelScrollDescrip = new javax.swing.JScrollPane();
+        textoDescrip = new javax.swing.JTextArea();
+        labelEquipado = new javax.swing.JLabel();
+        labelEquipadoValor = new javax.swing.JLabel();
+        labelCantidad = new javax.swing.JLabel();
+        labelCantidadValor = new javax.swing.JLabel();
+        botonComprarVender = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tienda RPG");
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(600, 600));
+        setMaximumSize(new java.awt.Dimension(600, 800));
         setMinimumSize(new java.awt.Dimension(50, 50));
-        setPreferredSize(new java.awt.Dimension(600, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 600));
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelPestanasArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panelPestanasArt.setPreferredSize(new java.awt.Dimension(300, 475));
-
-        panelScrollComprar.setBorder(null);
+        panelPestanasArt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        panelPestanasArt.setPreferredSize(new java.awt.Dimension(298, 473));
 
         listaComprar.setBackground(new java.awt.Color(153, 153, 153));
-        listaComprar.setModel(new DefaultListModel());
         listaComprar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaComprar.setSelectionBackground(new java.awt.Color(204, 204, 204));
         listaComprar.setSelectionForeground(new java.awt.Color(0, 0, 0));
@@ -66,14 +74,6 @@ public class TiendaVentana extends javax.swing.JFrame {
         panelScrollVender.setViewportView(listaVender);
 
         panelPestanasArt.addTab("Vender", panelScrollVender);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 242;
-        gridBagConstraints.ipady = 408;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelPestanasArt, gridBagConstraints);
 
         panelJugador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelJugador.setMinimumSize(new java.awt.Dimension(300, 475));
@@ -90,43 +90,117 @@ public class TiendaVentana extends javax.swing.JFrame {
             .addGap(0, 473, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelJugador, new java.awt.GridBagConstraints());
-
         panelArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panelArt.setPreferredSize(new java.awt.Dimension(600, 125));
+        panelArt.setPreferredSize(new java.awt.Dimension(598, 123));
+
+        labelNombreArt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelNombreArt.setText(" ");
+
+        panelScrollDescrip.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        textoDescrip.setEditable(false);
+        textoDescrip.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textoDescrip.setLineWrap(true);
+        textoDescrip.setText("Seleccione un artículo para ver más detalles.");
+        textoDescrip.setWrapStyleWord(true);
+        textoDescrip.setOpaque(false);
+        panelScrollDescrip.setViewportView(textoDescrip);
+
+        labelEquipado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelEquipado.setText("Equipado:");
+
+        labelEquipadoValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelEquipadoValor.setText(" ");
+
+        labelCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelCantidad.setText("Cantidad:");
+
+        labelCantidadValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelCantidadValor.setText(" ");
+
+        botonComprarVender.setBackground(new java.awt.Color(204, 204, 204));
+        botonComprarVender.setText("Comprar");
 
         javax.swing.GroupLayout panelArtLayout = new javax.swing.GroupLayout(panelArt);
         panelArt.setLayout(panelArtLayout);
         panelArtLayout.setHorizontalGroup(
             panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(panelArtLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelScrollDescrip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelArtLayout.createSequentialGroup()
+                        .addComponent(labelEquipado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelEquipadoValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(123, 123, 123)
+                        .addComponent(labelCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelCantidadValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(109, 109, 109)
+                        .addComponent(botonComprarVender))
+                    .addComponent(labelNombreArt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelArtLayout.setVerticalGroup(
             panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 123, Short.MAX_VALUE)
+            .addGroup(panelArtLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(labelNombreArt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelScrollDescrip, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonComprarVender)
+                    .addComponent(labelCantidad)
+                    .addComponent(labelCantidadValor)
+                    .addComponent(labelEquipado)
+                    .addComponent(labelEquipadoValor))
+                .addContainerGap())
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 605;
-        gridBagConstraints.ipady = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 0, 0, 0);
-        getContentPane().add(panelArt, gridBagConstraints);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panelArt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(panelPestanasArt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(panelJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelPestanasArt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(panelArt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonComprarVender;
+    private javax.swing.JLabel labelCantidad;
+    private javax.swing.JLabel labelCantidadValor;
+    private javax.swing.JLabel labelEquipado;
+    private javax.swing.JLabel labelEquipadoValor;
+    private javax.swing.JLabel labelNombreArt;
     private javax.swing.JList listaComprar;
     private javax.swing.JList listaVender;
     private javax.swing.JPanel panelArt;
     private javax.swing.JPanel panelJugador;
     private javax.swing.JTabbedPane panelPestanasArt;
     private javax.swing.JScrollPane panelScrollComprar;
+    private javax.swing.JScrollPane panelScrollDescrip;
     private javax.swing.JScrollPane panelScrollVender;
+    private javax.swing.JTextArea textoDescrip;
     // End of variables declaration//GEN-END:variables
 
     public JList getListaComprar() {
@@ -136,4 +210,24 @@ public class TiendaVentana extends javax.swing.JFrame {
     public JList getListaVender() {
         return listaVender;
     }
+
+    public JButton getBotonComprarVender() {
+        return botonComprarVender;
+    }
+
+    public JLabel getLabelCantidadValor() {
+        return labelCantidadValor;
+    }
+
+    public JLabel getLabelEquipadoValor() {
+        return labelEquipadoValor;
+    }
+
+    public JLabel getLabelNombreArt() {
+        return labelNombreArt;
+    }
+
+    public JTextArea getTextoDescrip() {
+        return textoDescrip;
+    }       
 }
