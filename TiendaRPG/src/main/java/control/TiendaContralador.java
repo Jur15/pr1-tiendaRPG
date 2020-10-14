@@ -18,14 +18,12 @@ public class TiendaContralador implements ListSelectionListener {
     private TiendaVentana ventana;
     private Jugador jugador;
     private Fabrica fabrica;
+    private String[] opcionesDialogo = new String[]{"Sí", "No"};
 
     public TiendaContralador(TiendaVentana ventana, Jugador jugador) throws IOException {
         this.ventana = ventana;
         this.jugador = jugador;
         this.fabrica = new Fabrica();
-        //Cambia el texto de las ventanas de dialogo
-        UIManager.put("OptionPane.YES", "Sí");
-        UIManager.put("OptionPane.NO", "No");
         inicializar();
         ventana.setVisible(true);
     }
@@ -78,7 +76,8 @@ public class TiendaContralador implements ListSelectionListener {
                 }
                 //Si no es un consumible pregunta si quiere equipar el articulo
                 if (seleccionado.getTipo() != TipoArticulo.Consumible) {
-                    int opcionEquipar = JOptionPane.showConfirmDialog(ventana, "¿Desea equipar el artículo?", "Equipar artículo", JOptionPane.YES_NO_OPTION);
+                    int opcionEquipar = JOptionPane.showOptionDialog(ventana, "¿Desea equipar el artículo?", "Equipar artículo",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcionesDialogo, opcionesDialogo[0]);
                     if (opcionEquipar == JOptionPane.YES_OPTION) {
                         switch (seleccionado.getTipo()) {
                             case Arma:
@@ -92,9 +91,9 @@ public class TiendaContralador implements ListSelectionListener {
                     }
                 }
                 //Muestra un dialogo de exito
-                JOptionPane.showMessageDialog(ventana, "Articulo comprado con éxito.");
+                JOptionPane.showMessageDialog(ventana, "Articulo comprado con éxito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(ventana, "No tienes suficiente dinero.");
+                JOptionPane.showMessageDialog(ventana, "No tienes suficiente dinero.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } //Vender un articulo
         else {
@@ -142,8 +141,8 @@ public class TiendaContralador implements ListSelectionListener {
         //Actualiza la informacion del jugador
         actualizarJugador();
         //Actualiza la comparacion de stats 
-        if(equipado.equals("Sí")) {
-            mostrarCambioStats(seleccionado,ventana.isModoComprar());
+        if (equipado.equals("Sí")) {
+            mostrarCambioStats(seleccionado, ventana.isModoComprar());
         }
         //Actualiza los valores de equipado y cantidad mientras aun tenga el articulo
         int cantArticulo = Collections.frequency(jugador.getInventario(), seleccionado);
@@ -165,8 +164,8 @@ public class TiendaContralador implements ListSelectionListener {
         //Obtiene el articulo seleccionado
         Articulo art = (Articulo) listaArt.getModel().getElementAt(listaArt.getSelectedIndex());
         //Muestra el cambio de stats cuando esta comprando
-        if(ventana.isModoComprar()) {
-            mostrarCambioStats(art,true);
+        if (ventana.isModoComprar()) {
+            mostrarCambioStats(art, true);
         }
         //Muestra el nombre del articulo
         ventana.getLabelNombreArt().setText(art.getNombre());
@@ -192,7 +191,7 @@ public class TiendaContralador implements ListSelectionListener {
             case Consumible:
                 valorEquipado = "N/A";
                 break;
-                
+
         }
         //Muestra la cantidad que posee el jugador
         int cantidadInventario = Collections.frequency(jugador.getInventario(), art);
@@ -211,12 +210,12 @@ public class TiendaContralador implements ListSelectionListener {
                     ataMag = jugador.getAtaqueMag(),
                     defMag = jugador.getDefensaMag(),
                     vel = jugador.getVelocidad();
-            if(modoComprar) {
+            if (modoComprar) {
                 ata += art.getAtaque();
                 def += art.getDefensa();
                 ataMag += art.getAtaqueMagico();
                 defMag += art.getDefensaMagica();
-                vel += art.getVelocidad();               
+                vel += art.getVelocidad();
             }
             ventana.mostrarCambioStats(ata, def, ataMag, defMag, vel);
         }
