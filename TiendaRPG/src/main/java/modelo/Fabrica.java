@@ -19,7 +19,8 @@ import okhttp3.Response;
 public class Fabrica {
 
     private String nombreArchivo;
-    private String[] nombreArticulos, descArticulos, tipoArticulos;
+    private String[] nombreArticulos, descArticulos;
+    private TipoArticulo[] tipoArticulos;
     private int[] preciobaseArticulos, bonusAtaque, bonusDefensa, bonusVelocidad, bonusAtaqueMag, bonusDefensaMag;
 
     public Fabrica() {
@@ -79,14 +80,18 @@ public class Fabrica {
             "Una pocion que aumenta la velocidad temporalmente.",
             "Una pocion que aumenta la defensa temporalmente."
         };
-        this.tipoArticulos = new String[]{
+        this.tipoArticulos = new TipoArticulo[]{
             //Katanas
-            "Arma", "Arma", "Arma", "Arma", "Arma", "Arma",
+            TipoArticulo.Arma, TipoArticulo.Arma, TipoArticulo.Arma,
+            TipoArticulo.Arma, TipoArticulo.Arma, TipoArticulo.Arma,
             //Estrellas
-            "Armadura", "Armadura", "Armadura", "Armadura", "Armadura", "Armadura",
+            TipoArticulo.Armadura, TipoArticulo.Armadura, TipoArticulo.Armadura, TipoArticulo.Armadura,
+            TipoArticulo.Armadura, TipoArticulo.Armadura,
             //Consumibles
-            "Consumible", "Consumible", "Consumible", "Consumible", "Consumible", "Consumible"
+            TipoArticulo.Consumible, TipoArticulo.Consumible, TipoArticulo.Consumible,
+            TipoArticulo.Consumible, TipoArticulo.Consumible, TipoArticulo.Consumible
         };
+
         this.preciobaseArticulos = new int[]{
             //Katanas
             100, 250, 400, 750, 1000, 1500,

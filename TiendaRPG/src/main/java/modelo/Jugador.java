@@ -8,11 +8,13 @@ import java.util.ArrayList;
  */
 public class Jugador {
 
+    private String nombre;
     private int dinero, ataque, defensa, ataqueMag, defensaMag, velocidad;
     private ArrayList<Articulo> inventario;
     private Articulo armaEquipada, armaduraEquipada;
 
-    public Jugador() {
+    public Jugador(String nombre) {
+        this.nombre = nombre;
         this.dinero = 1000;
         this.inventario = new ArrayList<>();
         this.armaEquipada = null;
@@ -24,12 +26,15 @@ public class Jugador {
         this.velocidad = 3;
     }
 
-    public Jugador(int dinero) {
-        this();
+    public Jugador(String nombre, int dinero) {
+        this(nombre);
         this.dinero = dinero;
     }
 
-    //Dinero
+    public String getNombre() {
+        return nombre;
+    }
+
     public int getDinero() {
         return dinero;
     }
@@ -43,40 +48,20 @@ public class Jugador {
         return ataque;
     }
 
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
-    }
-
     public int getDefensa() {
         return defensa;
-    }
-
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
     }
 
     public int getAtaqueMag() {
         return ataqueMag;
     }
 
-    public void setAtaqueMag(int ataqueMag) {
-        this.ataqueMag = ataqueMag;
-    }
-
     public int getDefensaMag() {
         return defensaMag;
     }
 
-    public void setDefensaMag(int defensaMag) {
-        this.defensaMag = defensaMag;
-    }
-
     public int getVelocidad() {
         return velocidad;
-    }
-
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
     }
 
     //Inventario    
@@ -89,16 +74,23 @@ public class Jugador {
         return armaEquipada;
     }
 
-    public void setArmaEquipada(Articulo armaEquipada) {
-        this.armaEquipada = armaEquipada;
-    }
-
     public Articulo getArmaduraEquipada() {
         return armaduraEquipada;
     }
 
-    public void setArmaduraEquipada(Articulo armaduraEquipada) {
-        this.armaduraEquipada = armaduraEquipada;
+    public void equiparArma(Articulo arma) {
+        this.armaEquipada = arma;
     }
 
+    public void desequiparArma() {
+        this.armaEquipada = null;
+    }
+
+    public void equiparArmadura(Articulo armadura) {
+        this.armaduraEquipada = armadura;
+    }
+
+    public void desequiparArmadura() {
+        this.armaduraEquipada = null;
+    }
 }

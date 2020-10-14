@@ -1,6 +1,7 @@
 package interfaz;
 
-import javax.swing.DefaultListModel;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,7 +17,7 @@ public class TiendaVentana extends javax.swing.JFrame {
     private boolean modoComprar = true;
     private final String descripArtDefault = "	        Seleccione un artículo para ver más detalles.",
             nombreArtDefault = " ";
-    
+
     /**
      * Creates new form TiendaVentana
      */
@@ -40,6 +41,19 @@ public class TiendaVentana extends javax.swing.JFrame {
         panelScrollVender = new javax.swing.JScrollPane();
         listaVender = new javax.swing.JList();
         panelJugador = new javax.swing.JPanel();
+        iconoJug = new javax.swing.JLabel();
+        labelJugNombre = new javax.swing.JLabel();
+        labelJugDinero = new javax.swing.JLabel();
+        ImageIcon iconoMoneda = new ImageIcon("Imagenes/Moneda.png"); //Carga la imagen en un ImageIcon
+        Image imagenMoneda = iconoMoneda.getImage(); //Lo convierte a un componente Image
+        Image imagenMonedaAux = imagenMoneda.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH); //Escala al tamaño correcto
+        iconoMoneda = new ImageIcon(imagenMonedaAux);  //Lo convierte devuelta en un ImageIcon
+        labelJugDinero.setIcon(iconoMoneda);
+        statAta = new interfaz.StatJugador("Ataque");
+        statDef = new interfaz.StatJugador("Defensa");
+        statAtaMag = new interfaz.StatJugador("Ataque Mág.");
+        statDefMag = new interfaz.StatJugador("Velocidad");
+        statVel = new interfaz.StatJugador("Defensa Mág.");
         panelArt = new javax.swing.JPanel();
         labelNombreArt = new javax.swing.JLabel();
         panelScrollDescrip = new javax.swing.JScrollPane();
@@ -59,7 +73,7 @@ public class TiendaVentana extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(600, 600));
 
         panelPestanasArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panelPestanasArt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        panelPestanasArt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         panelPestanasArt.setPreferredSize(new java.awt.Dimension(298, 473));
         panelPestanasArt.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -75,8 +89,6 @@ public class TiendaVentana extends javax.swing.JFrame {
 
         panelPestanasArt.addTab("Comprar", panelScrollComprar);
 
-        panelScrollVender.setBorder(null);
-
         listaVender.setBackground(new java.awt.Color(153, 153, 153));
         listaVender.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         panelScrollVender.setViewportView(listaVender);
@@ -87,16 +99,64 @@ public class TiendaVentana extends javax.swing.JFrame {
         panelJugador.setMinimumSize(new java.awt.Dimension(300, 475));
         panelJugador.setPreferredSize(new java.awt.Dimension(300, 475));
 
+        iconoJug.setIcon(new ImageIcon("Imagenes/NinjaHead.png"));
+
+        labelJugNombre.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        labelJugNombre.setText("Nombre");
+
+        labelJugDinero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelJugDinero.setText("Dinero");
+
         javax.swing.GroupLayout panelJugadorLayout = new javax.swing.GroupLayout(panelJugador);
         panelJugador.setLayout(panelJugadorLayout);
         panelJugadorLayout.setHorizontalGroup(
             panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGroup(panelJugadorLayout.createSequentialGroup()
+                .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelJugadorLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(iconoJug, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelJugNombre)
+                            .addComponent(labelJugDinero)))
+                    .addGroup(panelJugadorLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(statVel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statDefMag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statAtaMag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statAta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(24, 24, 24))
         );
+
+        panelJugadorLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {statAta, statAtaMag, statDef, statDefMag, statVel});
+
         panelJugadorLayout.setVerticalGroup(
             panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGroup(panelJugadorLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelJugadorLayout.createSequentialGroup()
+                        .addComponent(labelJugNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelJugDinero))
+                    .addComponent(iconoJug, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(statAta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(statDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(statAtaMag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(statVel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(statDefMag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
+
+        panelJugadorLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {statAta, statAtaMag, statDef, statDefMag, statVel});
 
         panelArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelArt.setPreferredSize(new java.awt.Dimension(598, 123));
@@ -114,16 +174,16 @@ public class TiendaVentana extends javax.swing.JFrame {
         textoDescrip.setOpaque(false);
         panelScrollDescrip.setViewportView(textoDescrip);
 
-        labelEquipado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelEquipado.setText("Equipado:");
+        labelEquipado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelEquipado.setText(" ");
 
-        labelEquipadoValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelEquipadoValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelEquipadoValor.setText(" ");
 
-        labelCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelCantidad.setText("Cantidad:");
+        labelCantidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelCantidad.setText(" ");
 
-        labelCantidadValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelCantidadValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCantidadValor.setText(" ");
 
         botonComprarVender.setBackground(new java.awt.Color(204, 204, 204));
@@ -162,10 +222,10 @@ public class TiendaVentana extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonComprarVender)
-                    .addComponent(labelCantidad)
                     .addComponent(labelCantidadValor)
                     .addComponent(labelEquipado)
-                    .addComponent(labelEquipadoValor))
+                    .addComponent(labelEquipadoValor)
+                    .addComponent(labelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -197,7 +257,7 @@ public class TiendaVentana extends javax.swing.JFrame {
 
     private void CambiarModoTienda(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CambiarModoTienda
         JTabbedPane panelPestanas = (JTabbedPane) evt.getSource();
-        if(panelPestanas.getSelectedIndex() == 1) {
+        if (panelPestanas.getSelectedIndex() == 1) {
             modoComprar = false;
             botonComprarVender.setText("Vender");
             listaVender.getSelectionModel().clearSelection();
@@ -206,17 +266,19 @@ public class TiendaVentana extends javax.swing.JFrame {
             botonComprarVender.setText("Comprar");
             listaComprar.getSelectionModel().clearSelection();
         }
-        
-        
-        this.cambiarVisibilidadDescripcion(false);
+        cambiarVisibilidadDescripcion(false);
+        ocultarCambioStats();
     }//GEN-LAST:event_CambiarModoTienda
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonComprarVender;
+    private javax.swing.JLabel iconoJug;
     private javax.swing.JLabel labelCantidad;
     private javax.swing.JLabel labelCantidadValor;
     private javax.swing.JLabel labelEquipado;
     private javax.swing.JLabel labelEquipadoValor;
+    private javax.swing.JLabel labelJugDinero;
+    private javax.swing.JLabel labelJugNombre;
     private javax.swing.JLabel labelNombreArt;
     private javax.swing.JList listaComprar;
     private javax.swing.JList listaVender;
@@ -226,6 +288,11 @@ public class TiendaVentana extends javax.swing.JFrame {
     private javax.swing.JScrollPane panelScrollComprar;
     private javax.swing.JScrollPane panelScrollDescrip;
     private javax.swing.JScrollPane panelScrollVender;
+    private interfaz.StatJugador statAta;
+    private interfaz.StatJugador statAtaMag;
+    private interfaz.StatJugador statDef;
+    private interfaz.StatJugador statDefMag;
+    private interfaz.StatJugador statVel;
     private javax.swing.JTextArea textoDescrip;
     // End of variables declaration//GEN-END:variables
 
@@ -244,7 +311,7 @@ public class TiendaVentana extends javax.swing.JFrame {
     public JLabel getLabelCantidadValor() {
         return labelCantidadValor;
     }
-
+       
     public JLabel getLabelEquipadoValor() {
         return labelEquipadoValor;
     }
@@ -260,9 +327,37 @@ public class TiendaVentana extends javax.swing.JFrame {
     public boolean isModoComprar() {
         return modoComprar;
     }
-    
+
+    public void setNombreJugador(String nombre) {
+        labelJugNombre.setText(nombre);
+    }
+
+    public void setDineroJugador(int monto) {
+        labelJugDinero.setText(Integer.toString(monto));
+    }
+
+    public void setStatAtaque(int ataque) {
+        statAta.setValor(ataque);
+    }
+
+    public void setStatDefensa(int def) {
+        statDef.setValor(def);
+    }
+
+    public void setStatAtaqueMag(int atMag) {
+        statAtaMag.setValor(atMag);
+    }
+
+    public void setStatDefensaMag(int defMag) {
+        statDefMag.setValor(defMag);
+    }
+
+    public void setStatVelocidad(int vel) {
+        statVel.setValor(vel);
+    }
+
     public void cambiarVisibilidadDescripcion(boolean visible) {
-        if(visible) {
+        if (visible) {
             labelCantidad.setText("Cantidad:");
             labelEquipado.setText("Equipado:");
         } else {
@@ -273,5 +368,21 @@ public class TiendaVentana extends javax.swing.JFrame {
             labelEquipado.setText(" ");
             labelEquipadoValor.setText(" ");
         }
+    }
+
+    public void mostrarCambioStats(int ata, int def, int ataMag, int defMag, int vel) {
+        statAta.mostrarCambio(ata);
+        statDef.mostrarCambio(def);
+        statAtaMag.mostrarCambio(ataMag);
+        statDefMag.mostrarCambio(defMag);
+        statVel.mostrarCambio(vel);
+    }
+
+    public void ocultarCambioStats() {
+        statAta.ocultarCambio();
+        statDef.ocultarCambio();
+        statAtaMag.ocultarCambio();
+        statDefMag.ocultarCambio();
+        statVel.ocultarCambio();
     }
 }

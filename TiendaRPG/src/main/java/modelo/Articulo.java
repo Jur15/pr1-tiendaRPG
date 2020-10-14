@@ -9,7 +9,7 @@ public class Articulo {
     private String nombre;
     private String descripcion;
     private int precio;
-    private String tipo;
+    private TipoArticulo tipo;
     //Stats
     private int ataque;
     private int defensa;
@@ -17,7 +17,7 @@ public class Articulo {
     private int ataqueMagico;
     private int defensaMagica;
 
-    public Articulo(String nombre, String descripcion, int precio, String tipo) {
+    public Articulo(String nombre, String descripcion, int precio, TipoArticulo tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -37,7 +37,7 @@ public class Articulo {
         return precio;
     }
 
-    public String getTipo() {
+    public TipoArticulo getTipo() {
         return tipo;
     }
 
