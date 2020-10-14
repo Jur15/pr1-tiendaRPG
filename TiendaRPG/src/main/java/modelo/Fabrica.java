@@ -42,13 +42,13 @@ public class Fabrica {
             "Filo Celestial",
             "Filo Demoniaco",
             "Masamune",
-            //Estrellas ninja: 6 en total
-            "Estrella Básica",
-            "Estrella Plateada",
-            "Estrella de Hielo",
-            "Aro de Viento",
-            "Estrella de la Medianoche",
-            "Estrella de la Iluminacion",
+            //Armaduras: 6 en total
+            "Traje de cuero",
+            "Traje de piel de oso",
+            "Traje de cuero tachonado",
+            "Armadura de coraza de dragón",
+            "Armadura de piel de grifo",
+            "Armadura de Leviatán",
             //Consumibles: 6 en total
             "Pocion sanadora",
             "Pocion magica",
@@ -64,14 +64,14 @@ public class Fabrica {
             "La hoja de esta katana está hecha con acero negro, útil para pasar desapercibido en la oscuridad.",
             "Una bella katana, forjada y enfriada por la niebla en lo alto de una montaña.",
             "Una hoja brusca, forjada con sangre y llamas infernales.",
-            "Una magnifica arma legendaria que solo corta a aquellos que merecen la muerte.",
-            //Estrellas ninja
-            "Una estrella ninja básica.",
-            "Una shuriken bellamente elaborada.",
-            "Una shuriken mística formada con hielo inderretible.",
-            "Esta shuriken sagrada es la personificación del poder y velocidad del viento.",
-            "Una shuriken legendaria que absorbe la luz a su alrededor.",
-            "Un cristal cortado a la perfección que contiene luz de las estrellas más antiguas en el universo.",
+            "Un arma legendaria que solo corta a aquellos que merecen la muerte.",
+            //Armaduras
+            "Un traje hecho con cuero endurecido.",
+            "Un traje hecho con el grueso cuero de un oso gigante.",
+            "Un traje de cuero tachonado con remaches de metal para proveer más protección.",
+            "Una armadura hecha con la piel escamosa de un dragón escupefuego.",
+            "Una armadura superior hecha con la piel mágica de un grifo.",
+            "Una armadura magnífica hecha con la piel del gran Leviatán, derrotado hace cientos de años en una violenta batalla.",
             //Consumibles
             "Una pocion que restaura 50 HP.",
             "Una pocion que restaura 30 MP.",
@@ -84,7 +84,7 @@ public class Fabrica {
             //Katanas
             TipoArticulo.Arma, TipoArticulo.Arma, TipoArticulo.Arma,
             TipoArticulo.Arma, TipoArticulo.Arma, TipoArticulo.Arma,
-            //Estrellas
+            //Armaduras
             TipoArticulo.Armadura, TipoArticulo.Armadura, TipoArticulo.Armadura, TipoArticulo.Armadura,
             TipoArticulo.Armadura, TipoArticulo.Armadura,
             //Consumibles
@@ -95,48 +95,48 @@ public class Fabrica {
         this.preciobaseArticulos = new int[]{
             //Katanas
             100, 250, 400, 750, 1000, 1500,
-            //Estrellas
-            50, 100, 300, 700, 1000, 1300,
+            //Armaduras
+            100, 150, 300, 700, 900, 1200,
             //Consumibles
             25, 25, 100, 100, 175, 175
         };
         this.bonusAtaque = new int[]{
             //Katanas
             1, 2, 4, 5, 5, 7,
-            //Estrellas
-            0, 1, 3, 4, 5, 7,
+            //Armaduras
+            0, 0, 0, 1, 1, 2,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
         this.bonusAtaqueMag = new int[]{
             //Katanas
             0, 0, 0, 1, 3, 4,
-            //Estrellas
-            1, 1, 2, 3, 4, 5,
+            //Armaduras
+            0, 0, 0, 0, 1, 2,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
         this.bonusDefensa = new int[]{
             //Katanas
-            0, 1, 2, 3, 4, 5,
-            //Estrellas
-            0, 1, 1, 2, 3, 3,
+            0, 0, 1, 2, 3, 4,
+            //Armaduras
+            1, 2, 3, 5, 6, 8,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
         this.bonusDefensaMag = new int[]{
             //Katanas
-            0, 0, 0, 2, 3, 5,
-            //Estrellas
-            0, 1, 2, 4, 5, 6,
+            0, 0, 0, 1, 2, 3,
+            //Armaduras
+            0, 1, 2, 5, 7, 8,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
         this.bonusVelocidad = new int[]{
             //Katanas
-            0, 1, 2, 4, 4, 6,
-            //Estrellas
-            1, 1, 2, 5, 5, 7,
+            0, 0, 1, 3, 4, 6,
+            //Armaduras
+            0, 1, 2, 5, 5, 7,
             //Consumibles (no suben stats)
             0, 0, 0, 0, 0, 0
         };
