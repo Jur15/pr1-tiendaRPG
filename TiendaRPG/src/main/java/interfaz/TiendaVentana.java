@@ -4,6 +4,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 /**
@@ -13,6 +14,8 @@ import javax.swing.JTextArea;
 public class TiendaVentana extends javax.swing.JFrame {
 
     private boolean modoComprar = true;
+    private final String descripArtDefault = "	        Seleccione un artículo para ver más detalles.",
+            nombreArtDefault = " ";
     
     /**
      * Creates new form TiendaVentana
@@ -58,6 +61,11 @@ public class TiendaVentana extends javax.swing.JFrame {
         panelPestanasArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelPestanasArt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         panelPestanasArt.setPreferredSize(new java.awt.Dimension(298, 473));
+        panelPestanasArt.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                CambiarModoTienda(evt);
+            }
+        });
 
         listaComprar.setBackground(new java.awt.Color(153, 153, 153));
         listaComprar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -101,7 +109,7 @@ public class TiendaVentana extends javax.swing.JFrame {
         textoDescrip.setEditable(false);
         textoDescrip.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textoDescrip.setLineWrap(true);
-        textoDescrip.setText("Seleccione un artículo para ver más detalles.");
+        textoDescrip.setText("\t        Seleccione un artículo para ver más detalles.");
         textoDescrip.setWrapStyleWord(true);
         textoDescrip.setOpaque(false);
         panelScrollDescrip.setViewportView(textoDescrip);
@@ -128,17 +136,19 @@ public class TiendaVentana extends javax.swing.JFrame {
             .addGroup(panelArtLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelArtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelScrollDescrip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelArtLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panelScrollDescrip, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelArtLayout.createSequentialGroup()
                         .addComponent(labelEquipado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelEquipadoValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(123, 123, 123)
+                        .addComponent(labelEquipadoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
                         .addComponent(labelCantidad)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelCantidadValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(109, 109, 109)
-                        .addComponent(botonComprarVender))
+                        .addComponent(labelCantidadValor, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addGap(82, 82, 82)
+                        .addComponent(botonComprarVender, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelNombreArt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -185,6 +195,22 @@ public class TiendaVentana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CambiarModoTienda(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CambiarModoTienda
+        JTabbedPane panelPestanas = (JTabbedPane) evt.getSource();
+        if(panelPestanas.getSelectedIndex() == 1) {
+            modoComprar = false;
+            botonComprarVender.setText("Vender");
+            listaVender.getSelectionModel().clearSelection();
+        } else {
+            modoComprar = true;
+            botonComprarVender.setText("Comprar");
+            listaComprar.getSelectionModel().clearSelection();
+        }
+        
+        
+        this.cambiarVisibilidadDescripcion(false);
+    }//GEN-LAST:event_CambiarModoTienda
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonComprarVender;
     private javax.swing.JLabel labelCantidad;
@@ -229,5 +255,23 @@ public class TiendaVentana extends javax.swing.JFrame {
 
     public JTextArea getTextoDescrip() {
         return textoDescrip;
-    }       
+    }
+
+    public boolean isModoComprar() {
+        return modoComprar;
+    }
+    
+    public void cambiarVisibilidadDescripcion(boolean visible) {
+        if(visible) {
+            labelCantidad.setText("Cantidad:");
+            labelEquipado.setText("Equipado:");
+        } else {
+            textoDescrip.setText(descripArtDefault);
+            labelNombreArt.setText(nombreArtDefault);
+            labelCantidad.setText(" ");
+            labelCantidadValor.setText(" ");
+            labelEquipado.setText(" ");
+            labelEquipadoValor.setText(" ");
+        }
+    }
 }

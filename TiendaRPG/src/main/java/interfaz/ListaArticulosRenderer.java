@@ -16,15 +16,22 @@ import modelo.Articulo;
  */
 public class ListaArticulosRenderer extends ElementoListaArticulo implements ListCellRenderer<Articulo> {
 
-    public ListaArticulosRenderer() {
+    private boolean modoVender;
+    
+    public ListaArticulosRenderer(boolean modoVender) {
         setOpaque(true);
+        this.modoVender = modoVender;
     }
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Articulo> list, Articulo value, int index, boolean isSelected, boolean cellHasFocus) {
         this.setNombreArt(value.getNombre());
-        this.setPrecioArt(value.getPrecio());
-        
+        //Si esta en el modo Vender muestra el 75% del precio
+        if(modoVender) {
+            this.setPrecioArt(value.getPrecio()*75/100);
+        } else {
+            this.setPrecioArt(value.getPrecio());
+        }
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
