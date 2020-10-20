@@ -64,6 +64,10 @@ public class TiendaContralador implements ListSelectionListener {
         //Obtiene el estado de la tienda para saber si es una compra o una venta
         //Comprar un artiuclo
         if (ventana.isModoComprar()) {
+            //Comprueba que selecciono un articulo
+            if (ventana.getListaComprar().isSelectionEmpty()) {
+                return;
+            }
             seleccionado = (Articulo) ventana.getListaComprar().getSelectedValue();
             //Verifica que el jugador tenga suficiente dinero
             if (jugador.getDinero() >= seleccionado.getPrecio()) {
@@ -97,6 +101,10 @@ public class TiendaContralador implements ListSelectionListener {
             }
         } //Vender un articulo
         else {
+            //Comprueba que selecciono un articulo
+            if (ventana.getListaVender().isSelectionEmpty()) {
+                return;
+            }
             seleccionado = (Articulo) ventana.getListaVender().getSelectedValue();
             //Obtiene el tipo de articulo para desequiparlo si es necesario
             switch (seleccionado.getTipo()) {

@@ -316,12 +316,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelScrollDescrip" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="botonComprarVender" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelCantidadValor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelEquipado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelEquipadoValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="labelCantidad" alignment="1" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botonComprarVender" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCantidadValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelEquipado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelEquipadoValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
